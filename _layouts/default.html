@@ -19,6 +19,16 @@
             --card-bg: var(--astronaut); --nav-bg: #1F2A4A;
             --accent: var(--gladeye); --border-color: var(--astronaut);
         }
+        
+        /* Định dạng đường phân cách (ngắt cảnh) trong truyện */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 3rem auto; /* Tạo khoảng trống rộng rãi trên dưới */
+            width: 80%; /* Độ dài đường kẻ bằng 80% trang chữ */
+            opacity: 0.7; /* Làm mờ một chút cho tinh tế */
+        }
+
         body {
             font-family: 'Lora', serif; font-size: var(--base-font-size);
             background-color: var(--bg-color); color: var(--text-color);
@@ -77,49 +87,3 @@
         .toolbar button { background: transparent; border: 1px solid var(--text-color); color: var(--text-color); padding: 5px 15px; border-radius: 20px; cursor: pointer; font-family: 'Lora', serif; transition: all 0.3s; }
         .toolbar button:hover { background: var(--text-color); color: var(--bg-color); }
         .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="{{ '/' | relative_url }}" class="logo">{{ site.name }}</a>
-        <div class="nav-links">
-            <a href="{{ '/' | relative_url }}">Trang Chủ</a>
-            
-            <!-- Menu Fanfiction đã chuyển thành link -->
-            <div class="dropdown">
-                <a href="{{ '/fanfiction.html' | relative_url }}" class="dropbtn">Fanfiction ▼</a>
-                <div class="dropdown-content">
-                    <a href="{{ '/fanfiction.html?tag=Tears+of+Themis' | relative_url }}">Tears of Themis</a>
-                    <a href="{{ '/fanfiction.html?tag=Love+and+Deepspace' | relative_url }}">Love and Deepspace</a>
-                    <a href="{{ '/fanfiction.html?tag=Nguyệt+Mộng' | relative_url }}">Nguyệt Mộng</a>
-                </div>
-            </div>
-
-        </div>
-    </nav>
-    <div class="toolbar">
-        <button onclick="changeFontSize(-1)">A- Thu nhỏ</button>
-        <button onclick="changeFontSize(1)">A+ Phóng to</button>
-        <button onclick="toggleTheme()" id="theme-btn">🌙 Giao Diện Tối</button>
-    </div>
-    <div class="container">
-        {{ content }}
-    </div>
-    <script>
-        function toggleTheme() {
-            const body = document.documentElement; const btn = document.getElementById('theme-btn');
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme'); btn.innerHTML = '🌙 Giao Diện Tối';
-            } else {
-                body.setAttribute('data-theme', 'dark'); btn.innerHTML = '☀️ Giao Diện Sáng';
-            }
-        }
-        let currentSize = 18;
-        function changeFontSize(step) {
-            currentSize += (step * 2);
-            if (currentSize < 14) currentSize = 14; if (currentSize > 26) currentSize = 26;
-            document.documentElement.style.setProperty('--base-font-size', currentSize + 'px');
-        }
-    </script>
-</body>
-</html>
