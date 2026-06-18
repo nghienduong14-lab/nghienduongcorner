@@ -30,9 +30,8 @@
         nav { background: var(--nav-bg); padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .logo { font-size: 1.8rem; color: var(--text-color); }
         
-        /* Cập nhật CSS cho thanh điều hướng và menu xổ xuống */
         .nav-links { display: flex; align-items: center; }
-        .nav-links > a, .dropdown > button { 
+        .nav-links > a, .dropbtn { 
             color: var(--text-color); 
             margin-left: 25px; 
             font-family: 'Playfair Display', serif; 
@@ -50,22 +49,22 @@
             display: none;
             position: absolute;
             background-color: var(--card-bg);
-            min-width: 160px;
+            min-width: 180px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 8px;
             overflow: hidden;
-            top: 100%; /* Hiển thị ngay dưới nút Fanfiction */
-            left: 25px; /* Căn chỉnh với lề trái của nút */
+            top: 100%; 
+            left: 25px; 
         }
         .dropdown-content a {
             color: var(--text-color);
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            font-family: 'Lora', serif; /* Font chữ thân thiện dễ đọc cho menu con */
+            font-family: 'Lora', serif;
             font-size: 1rem;
-            margin-left: 0; /* Xóa margin thừa */
+            margin-left: 0; 
         }
         .dropdown-content a:hover {
             background-color: var(--bg-color);
@@ -86,13 +85,13 @@
         <div class="nav-links">
             <a href="{{ '/' | relative_url }}">Trang Chủ</a>
             
-            <!-- Menu Fanfiction với tùy chọn xổ xuống -->
+            <!-- Menu Fanfiction đã chuyển thành link -->
             <div class="dropdown">
-                <button>Fanfiction ▼</button>
+                <a href="{{ '/fanfiction.html' | relative_url }}" class="dropbtn">Fanfiction ▼</a>
                 <div class="dropdown-content">
-                    <a href="#">Tears of Themis</a>
-                    <a href="#">Love and Deepspace</a>
-                    <a href="#">Nguyệt Mộng</a>
+                    <a href="{{ '/fanfiction.html?tag=Tears+of+Themis' | relative_url }}">Tears of Themis</a>
+                    <a href="{{ '/fanfiction.html?tag=Love+and+Deepspace' | relative_url }}">Love and Deepspace</a>
+                    <a href="{{ '/fanfiction.html?tag=Nguyệt+Mộng' | relative_url }}">Nguyệt Mộng</a>
                 </div>
             </div>
 
