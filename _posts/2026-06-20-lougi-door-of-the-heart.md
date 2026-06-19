@@ -4,7 +4,7 @@ title: "[LouGi] Door of the heart"
 category: "One-shot"
 tags: ["Hogwarts", "Thanh Mai Trúc Mã", "LouGi", "Kỳ nghỉ hè của Giselle Windsor"]
 image: "https://i.pinimg.com/736x/9c/a4/50/9ca450f3c4c14d28fffd0ea9cb2ff633.jpg"
-excerpt: "His presence soothes her more than a full-moon run.”
+excerpt: "His presence soothes her more than a full-moon run."
 ---
 “Tớ không thích những người đến từ Wales.”
 
