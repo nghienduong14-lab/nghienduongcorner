@@ -3,9 +3,11 @@ layout: default
 title: Profile OC
 ---
 <style>
+    /* Thanh công cụ chứa bộ lọc */
     .filter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; padding-bottom: 10px; border-bottom: 1px dashed var(--accent); }
     .filter-header h2 { margin: 0; font-size: 2rem; color: var(--text-color); }
     
+    /* Trình thả xuống (Dropdown filter) */
     .au-filter {
         padding: 8px 15px; border-radius: 20px;
         border: 1px solid var(--accent);
@@ -15,26 +17,89 @@ title: Profile OC
     }
     .au-filter:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
 
-    .oc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; }
+    /* Lưới hiển thị OC - Dùng lưới cố định để các thẻ bằng nhau */
+    .oc-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+        gap: 2rem; 
+        align-items: stretch; /* Đảm bảo các thẻ trên cùng một hàng dài bằng nhau */
+    }
     
+    /* Khung thẻ OC */
     .oc-card {
         background: var(--card-bg); border-radius: 12px; overflow: hidden;
         box-shadow: 0 6px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column;
-        height: 480px; 
         border: 1px solid var(--border-color);
         transition: transform 0.3s;
+        height: 100%; /* Ép thẻ trải dài hết chiều cao của hàng */
     }
     .oc-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
     
-    .oc-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 3px solid var(--light-steel-blue); }
-    [data-theme="dark"] .oc-img { border-bottom: 3px solid var(--orbital); opacity: 0.85; }
+    /* Hình ảnh - Ép khung ảnh bằng Aspect Ratio */
+    .oc-img-wrapper {
+        width: 100%;
+        aspect-ratio: 4 / 3; /* Tỷ lệ vàng cho khung ảnh, đảm bảo mọi ảnh đều chung 1 cỡ */
+        border-bottom: 3px solid var(--light-steel-blue);
+        overflow: hidden;
+    }
+    [data-theme="dark"] .oc-img-wrapper { border-bottom: 3px solid var(--orbital); opacity: 0.85; }
     
-    .oc-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; gap: 10px; font-size: 0.9em; }
-    .oc-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text-color); margin: 0 0 5px 0; text-align: center; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px;}
+    .oc-img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; /* Đảm bảo ảnh lấp đầy khung mà không bị méo */
+        object-position: center; 
+    }
     
-    .oc-detail { display: flex; justify-content: space-between; align-items: flex-start; }
+    /* Phần chứa chữ */
+    .oc-info { 
+        padding: 15px; 
+        flex-grow: 1; /* Cực kỳ quan trọng: Phần chữ sẽ tự động giãn ra để lấp đầy khoảng trống */
+        display: flex; 
+        flex-direction: column; 
+        font-size: 0.9em; 
+    }
+    
+    /* Xử lý Tên dài */
+    .oc-name-container {
+        height: 80px; /* Cố định chiều cao cho khu vực chứa tên */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px dashed var(--border-color); 
+        margin-bottom: 15px;
+    }
+    .oc-name { 
+        font-family: 'Playfair Display', serif; 
+        font-size: 1.5rem; 
+        color: var(--text-color); 
+        margin: 0; 
+        text-align: center; 
+        /* Cắt bớt chữ nếu quá 2 dòng */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    /* Danh sách chi tiết - Dùng Grid để luôn căn chỉnh đều */
+    .oc-details-list {
+        display: grid;
+        gap: 10px;
+        flex-grow: 1; /* Chiếm hết phần còn lại của thẻ */
+    }
+
+    .oc-detail { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        border-bottom: 1px solid rgba(0,0,0,0.03);
+        padding-bottom: 5px;
+    }
+    [data-theme="dark"] .oc-detail { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    
     .oc-label { font-weight: bold; color: var(--accent); min-width: 80px; }
-    .oc-value { text-align: right; color: var(--text-color); }
+    .oc-value { text-align: right; color: var(--text-color); font-style: italic;}
 </style>
 
 <div class="filter-header">
@@ -50,28 +115,35 @@ title: Profile OC
 <div class="oc-grid" id="oc-grid">
     {% for oc in site.data.ocs %}
     <div class="oc-card" data-au="{{ oc.au }}">
-        <img src="{{ oc.image }}" alt="{{ oc.name }}" class="oc-img">
+        <div class="oc-img-wrapper">
+            <img src="{{ oc.image }}" alt="{{ oc.name }}" class="oc-img">
+        </div>
         <div class="oc-info">
-            <h3 class="oc-name">{{ oc.name }}</h3>
-            <div class="oc-detail">
-                <span class="oc-label">Tuổi:</span> 
-                <span class="oc-value">{{ oc.age }}</span>
+            <div class="oc-name-container">
+                <h3 class="oc-name" title="{{ oc.name }}">{{ oc.name }}</h3>
             </div>
-            <div class="oc-detail">
-                <span class="oc-label">AU:</span> 
-                <span class="oc-value">{{ oc.au }}</span>
-            </div>
-            <div class="oc-detail">
-                <span class="oc-label">Tính cách:</span> 
-                <span class="oc-value">{{ oc.personality }}</span>
-            </div>
-            <div class="oc-detail">
-                <span class="oc-label">Partner:</span> 
-                <span class="oc-value">{{ oc.partner }}</span>
-            </div>
-            <div class="oc-detail">
-                <span class="oc-label">Status:</span> 
-                <span class="oc-value">{{ oc.status }}</span>
+            
+            <div class="oc-details-list">
+                <div class="oc-detail">
+                    <span class="oc-label">Tuổi:</span> 
+                    <span class="oc-value">{{ oc.age }}</span>
+                </div>
+                <div class="oc-detail">
+                    <span class="oc-label">AU:</span> 
+                    <span class="oc-value">{{ oc.au }}</span>
+                </div>
+                <div class="oc-detail">
+                    <span class="oc-label">Tính cách:</span> 
+                    <span class="oc-value">{{ oc.personality }}</span>
+                </div>
+                <div class="oc-detail">
+                    <span class="oc-label">Partner:</span> 
+                    <span class="oc-value">{{ oc.partner }}</span>
+                </div>
+                <div class="oc-detail">
+                    <span class="oc-label">Status:</span> 
+                    <span class="oc-value">{{ oc.status }}</span>
+                </div>
             </div>
         </div>
     </div>
@@ -79,6 +151,7 @@ title: Profile OC
 </div>
 
 <script>
+    // Script để ẩn/hiện thẻ khi chọn bộ lọc
     function filterOC() {
         const selectedAU = document.getElementById('au-filter').value;
         const cards = document.querySelectorAll('.oc-card');
@@ -86,9 +159,9 @@ title: Profile OC
         cards.forEach(card => {
             const cardAU = card.getAttribute('data-au');
             if (selectedAU === 'all' || cardAU === selectedAU) {
-                card.style.display = 'flex'; 
+                card.style.display = 'flex'; // Hiện
             } else {
-                card.style.display = 'none'; 
+                card.style.display = 'none'; // Ẩn
             }
         });
     }
