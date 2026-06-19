@@ -11,6 +11,10 @@ excerpt: |
 
   8:00 - 20:00: Hang out with Giselle (circled in red)
 ---
+*Phần 2 trong serise Kỳ nghỉ hè của Giselle Windor.*
+
+***
+
 Sau khi trở về từ khoảnh vườn đằng sau nhà, Giselle trằn trọc mãi không ngủ được. Dinh thự nhà Ross đã chìm vào yên lặng từ lâu, mặc dù cả nhà cũng đã tốn khoảng chừng đâu đó ba mươi phút vì lo lắng cho hai đứa trẻ. Mãi về sau khi nhận ra cả hai cần tắm rửa và thay quần áo trước khi bị nhiễm lạnh thì cuộc trò chuyện mới kết thúc.
 
 Giờ đã là nửa đêm, và cô nàng họ Windsor vẫn đang ngồi xếp bằng trên giường với chiếc chăn mỏng quấn quanh người, thơ thẩn nhìn ra bên ngoài cửa sổ. Trăng đêm nay là trăng khuyết cuối tháng, chỉ có thể thấy được một vệt sáng lờ mờ của nó ẩn sau những đám mây.
