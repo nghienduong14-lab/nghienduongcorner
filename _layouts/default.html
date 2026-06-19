@@ -40,12 +40,44 @@
         .toolbar { display: flex; justify-content: flex-end; padding: 10px 10%; gap: 15px; border-bottom: 1px solid var(--border-color); position: relative; z-index: 10;}
         .toolbar button { background: transparent; border: 1px solid var(--text-color); color: var(--text-color); padding: 5px 15px; border-radius: 20px; cursor: pointer; font-family: 'Lora', serif; transition: all 0.3s; }
         .toolbar button:hover { background: var(--text-color); color: var(--bg-color); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; position: relative; z-index: 2; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; position: relative; z-index: 2; transition: all 0.5s ease; }
 
-        /* ĐỔI MÀU SAO THÀNH VÀNG PASTEL */
         .star { position: fixed; top: -10px; background-color: #FDE68A; border-radius: 50%; pointer-events: none; animation: fall linear forwards; z-index: 1; opacity: 0.9; box-shadow: 0 0 8px #FDE68A; }
         [data-theme="dark"] .star { box-shadow: 0 0 10px #FDE68A; }
         @keyframes fall { to { transform: translateY(105vh); } }
+
+        /* --- CHẾ ĐỘ ĐỌC TĨNH LẶNG (FOCUS MODE) --- */
+        body.zen-mode nav, 
+        body.zen-mode .sidebar, 
+        body.zen-mode .intro,
+        body.zen-mode .cover-image { 
+            display: none !important; 
+        }
+        body.zen-mode .container {
+            max-width: 750px !important; /* Thu hẹp khung đọc như một trang sách */
+            margin: 0 auto;
+            font-size: calc(var(--base-font-size) + 2px); /* Tự động phóng to nhẹ chữ */
+            padding-top: 5vh;
+        }
+        body.zen-mode .main-column { 
+            width: 100% !important; 
+            flex: none !important; 
+        }
+        
+        /* Giấu các nút khác trên thanh công cụ, chỉ giữ lại nút Thoát Tĩnh Lặng ở góc dưới */
+        body.zen-mode .toolbar button:not(#zen-btn) { display: none !important; }
+        body.zen-mode .toolbar { 
+            position: fixed; bottom: 30px; right: 30px; 
+            border: none; padding: 0; z-index: 999;
+            opacity: 0.2; transition: opacity 0.3s ease, transform 0.3s;
+        }
+        body.zen-mode .toolbar:hover { opacity: 1; transform: scale(1.05); }
+        body.zen-mode #zen-btn {
+            background: var(--card-bg); border: 2px solid var(--accent);
+            color: var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            font-size: 1.1rem; padding: 10px 20px; font-weight: bold;
+        }
+        [data-theme="dark"] body.zen-mode #zen-btn { background: var(--mystification); color: var(--first-snow); border-color: var(--orbital); }
     </style>
 </head>
 <body>
@@ -53,9 +85,7 @@
         <a href="{{ '/' | relative_url }}" class="logo">{{ site.name }}</a>
         <div class="nav-links">
             <a href="{{ '/' | relative_url }}">Trang Chủ</a>
-            
             <a href="{{ '/profile-oc.html' | relative_url }}">Profile OC</a>
-            
             <div class="dropdown">
                 <a href="{{ '/fanfiction.html' | relative_url }}" class="dropbtn">Fanfiction ▼</a>
                 <div class="dropdown-content">
@@ -67,6 +97,8 @@
         </div>
     </nav>
     <div class="toolbar">
+        <!-- NÚT KÍCH HOẠT FOCUS MODE MỚI -->
+        <button onclick="toggleZen()" id="zen-btn">📖 Đọc Tĩnh Lặng</button>
         <button onclick="toggleStars()" id="star-btn">✨ Tắt Sao</button>
         <button onclick="changeFontSize(-1)">A- Thu nhỏ</button>
         <button onclick="changeFontSize(1)">A+ Phóng to</button>
@@ -107,6 +139,20 @@
             else { btn.innerHTML = '✨ Bật Sao'; clearInterval(starInterval); document.querySelectorAll('.star').forEach(s => s.remove()); }
         }
         startStars(); 
+
+        // TÍNH NĂNG FOCUS MODE ĐƯỢC THÊM VÀO ĐÂY
+        function toggleZen() {
+            const body = document.body;
+            const btn = document.getElementById('zen-btn');
+            body.classList.toggle('zen-mode');
+            
+            if (body.classList.contains('zen-mode')) {
+                // Khi ở chế độ tĩnh lặng, nút sẽ đổi thành biểu tượng nến và tự động mờ đi
+                btn.innerHTML = '🕯️ Thoát Tĩnh Lặng';
+            } else {
+                btn.innerHTML = '📖 Đọc Tĩnh Lặng';
+            }
+        }
     </script>
 </body>
 </html>
