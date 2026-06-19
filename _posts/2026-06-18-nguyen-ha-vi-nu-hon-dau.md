@@ -1,8 +1,10 @@
+---
 layout: post
 title: "[Nguyên Hạ] Vị nụ hôn đầu"
 category: "One-shot"
 tags: [OCTP]
 image: "https://i.pinimg.com/1200x/f9/57/c2/f957c23566df960a4e1d0c847672b554.jpg"
+---
 Đương nhiên việc không thể thiếu vào đêm giao thừa chính là đi Countdown.
 
 Lê Nhật Hạ đứng trước gương, cẩn thận chỉnh lại cái cổ áo sơ mi kẻ sọc bên trong chiếc áo len màu trắng rồi thoa lại một lớp son bóng. Như thông lệ mọi năm, tết dương lịch thì cả lũ sẽ đi đếm ngược đón năm mới cùng nhau, bởi vì tết âm lịch gần như mỗi đứa một nơi để đón cùng gia đình.
@@ -42,6 +44,7 @@ Cho dù có là hotboy của trường thì cũng phải dỗ “crush” thôi.
 Thực ra thì Lê Nhật Hạ vẫn được xếp vào hàng tương đối dễ dỗ. Chẳng hạn như lúc này, con bé vui vẻ cầm lấy ly trà sữa còn hơi ấm từ tay Hoàng Minh Nguyên, sau đó vui vẻ hút một ngụm thật lớn, đôi mắt vui đến mức cong cong như hai vầng trăng khuyết, lộ rõ cả lúm đồng tiền bên phải.  
 
 Bàn tay Hoàng Minh Nguyên xoa xoa tóc Nhật Hạ khiến nó hơi rối, nhưng đương sự còn đang mải mê tận hưởng trà sữa, không rảnh để hạnh họe.
+
 ***
 
 Chỗ hẹn ngày hôm nay khá gần nhà hai đứa, hơn nữa lại còn cấm đường, thế nên cuối cùng Hoàng Minh Nguyên quyết định đi bộ cho tiện.
@@ -121,6 +124,7 @@ Hoàng Minh Nguyên mỉm cười đáp lại, sau đó lại đưa tay lên xoa
 “Cứ mạnh mẽ tiến lên phía trước, tớ sẽ luôn ở bên cậu.”
 
 Sẽ không có một mùa xuân nào bắt đầu mà không có Hoàng Minh Nguyên ở cạnh Lê Nhật Hạ, và cũng sẽ chẳng có một năm nào bắt đầu mà Lê Nhật Hạ buông tay Hoàng Minh Nguyên.
+
 ***
 
 Khi dòng người tản ra thì cũng là lúc Lê Nhật Hạ đang ngủ gà ngủ gật trên vai Hoàng Minh Nguyên. Con bé không chịu về nhà vì không thích chen chúc đông quá, thế nên Minh Nguyên đồng ý ngồi lại cái ghế đá này thêm một tiếng nữa.
@@ -144,6 +148,7 @@ Lê Nhật Hạ không phản ứng gì, có lẽ là đang ngủ rất say.
 Vẫn như cũ, Hoàng Minh Nguyên không nhận được lời hồi đáp nào từ phía đối phương cả. Nhưng cậu dường như cũng chẳng bị điều đó làm ảnh hưởng đến cảm xúc, vẫn lén lút đặt lên khóe môi người trong lòng một cái hôn thật nhẹ.
 
 Ừm, thì ra nụ hôn đầu có vị sữa tươi trân châu đường đen.
+
 ***
 
 Trên đường về nhà, mặc dù được cõng trên bờ lưng rất vững chãi của Hoàng Minh Nguyên, thế nhưng Lê Nhật Hạ cũng chẳng yên phận. Con bé cựa người lung tung, sau đó con nói lẩm bẩm gì đó.
