@@ -4,6 +4,10 @@ title: "[Thư Linh] Ký ức"
 category: "One-shot"
 tags: ["Nguyệt Mộng", "Thư Linh", "Mạch chính"]
 image: "https://i.pinimg.com/1200x/a2/1b/6b/a21b6b73f8da8763a98ceda89c21139f.jpg"
+excerpt: |
+    “Vậy ca ca sẽ không bao giờ rời bỏ A Linh, được không?”
+    “Ca ca hứa nhé?”
+    “Ừm, ca ca hứa. Đừng khóc nữa, lòng ca ca thấy cũng đau.”
 ---
 
 Tất cả mọi chuyện xảy ra đều trong tầm kiểm soát của Cẩm Ca Lâu.
