@@ -1,0 +1,95 @@
+---
+layout: default
+title: Profile OC
+---
+<style>
+    .filter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; padding-bottom: 10px; border-bottom: 1px dashed var(--accent); }
+    .filter-header h2 { margin: 0; font-size: 2rem; color: var(--text-color); }
+    
+    .au-filter {
+        padding: 8px 15px; border-radius: 20px;
+        border: 1px solid var(--accent);
+        background: var(--card-bg); color: var(--text-color);
+        font-family: 'Lora', serif; font-size: 0.95rem;
+        cursor: pointer; outline: none; transition: all 0.3s;
+    }
+    .au-filter:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+    .oc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; }
+    
+    .oc-card {
+        background: var(--card-bg); border-radius: 12px; overflow: hidden;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column;
+        height: 480px; 
+        border: 1px solid var(--border-color);
+        transition: transform 0.3s;
+    }
+    .oc-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.1); }
+    
+    .oc-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 3px solid var(--light-steel-blue); }
+    [data-theme="dark"] .oc-img { border-bottom: 3px solid var(--orbital); opacity: 0.85; }
+    
+    .oc-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; gap: 10px; font-size: 0.9em; }
+    .oc-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text-color); margin: 0 0 5px 0; text-align: center; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px;}
+    
+    .oc-detail { display: flex; justify-content: space-between; align-items: flex-start; }
+    .oc-label { font-weight: bold; color: var(--accent); min-width: 80px; }
+    .oc-value { text-align: right; color: var(--text-color); }
+</style>
+
+<div class="filter-header">
+    <h2>Hồ Sơ Nhân Vật</h2>
+    <select id="au-filter" class="au-filter" onchange="filterOC()">
+        <option value="all">Tất cả AU</option>
+        <option value="Nguyệt Mộng">Nguyệt Mộng</option>
+        <option value="Tears of Themis">Tears of Themis</option>
+        <option value="Love and Deepspace">Love and Deepspace</option>
+    </select>
+</div>
+
+<div class="oc-grid" id="oc-grid">
+    {% for oc in site.data.ocs %}
+    <div class="oc-card" data-au="{{ oc.au }}">
+        <img src="{{ oc.image }}" alt="{{ oc.name }}" class="oc-img">
+        <div class="oc-info">
+            <h3 class="oc-name">{{ oc.name }}</h3>
+            <div class="oc-detail">
+                <span class="oc-label">Tuổi:</span> 
+                <span class="oc-value">{{ oc.age }}</span>
+            </div>
+            <div class="oc-detail">
+                <span class="oc-label">AU:</span> 
+                <span class="oc-value">{{ oc.au }}</span>
+            </div>
+            <div class="oc-detail">
+                <span class="oc-label">Tính cách:</span> 
+                <span class="oc-value">{{ oc.personality }}</span>
+            </div>
+            <div class="oc-detail">
+                <span class="oc-label">Partner:</span> 
+                <span class="oc-value">{{ oc.partner }}</span>
+            </div>
+            <div class="oc-detail">
+                <span class="oc-label">Status:</span> 
+                <span class="oc-value">{{ oc.status }}</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    function filterOC() {
+        const selectedAU = document.getElementById('au-filter').value;
+        const cards = document.querySelectorAll('.oc-card');
+        
+        cards.forEach(card => {
+            const cardAU = card.getAttribute('data-au');
+            if (selectedAU === 'all' || cardAU === selectedAU) {
+                card.style.display = 'flex'; 
+            } else {
+                card.style.display = 'none'; 
+            }
+        });
+    }
+</script>
