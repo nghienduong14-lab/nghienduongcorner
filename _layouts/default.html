@@ -22,12 +22,7 @@
         
         hr { border: none; border-top: 1px solid var(--border-color); margin: 3rem auto; width: 80%; opacity: 0.7; }
 
-        body {
-            font-family: 'Lora', serif; font-size: var(--base-font-size);
-            background-color: var(--bg-color); color: var(--text-color);
-            margin: 0; padding: 0; transition: all 0.4s ease; line-height: 1.8;
-            overflow-x: hidden; /* Tránh thanh cuộn ngang khi sao rơi */
-        }
+        body { font-family: 'Lora', serif; font-size: var(--base-font-size); background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: all 0.4s ease; line-height: 1.8; overflow-x: hidden; }
         h1, h2, h3, h4, .logo { font-family: 'Playfair Display', serif; font-weight: 700; }
         a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
         a:hover { opacity: 0.7; }
@@ -38,7 +33,7 @@
         .nav-links > a, .dropbtn { color: var(--text-color); margin-left: 25px; font-family: 'Playfair Display', serif; font-size: 1.1rem; background: none; border: none; cursor: pointer; padding: 0; }
         .dropdown { position: relative; display: inline-block; }
         .dropdown-content { display: none; position: absolute; background-color: var(--card-bg); min-width: 180px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 10; border-radius: 8px; overflow: hidden; top: 100%; left: 25px; }
-        .dropdown-content a { color: var(--text-color); padding: 12px 16px; text-decoration: none; display: block; font-family: 'Lora', serif; font-size: 1rem; }
+        .dropdown-content a { color: var(--text-color); padding: 12px 16px; text-decoration: none; display: block; font-family: 'Lora', serif; font-size: 1rem; margin-left: 0; }
         .dropdown-content a:hover { background-color: var(--bg-color); }
         .dropdown:hover .dropdown-content { display: block; }
 
@@ -47,9 +42,9 @@
         .toolbar button:hover { background: var(--text-color); color: var(--bg-color); }
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; position: relative; z-index: 2; }
 
-        /* CSS Hiệu ứng sao rơi */
-        .star { position: fixed; top: -10px; background-color: var(--accent); border-radius: 50%; pointer-events: none; animation: fall linear forwards; z-index: 1; opacity: 0.6; }
-        [data-theme="dark"] .star { background-color: #fff; box-shadow: 0 0 5px #fff; }
+        /* ĐỔI MÀU SAO THÀNH VÀNG PASTEL */
+        .star { position: fixed; top: -10px; background-color: #FDE68A; border-radius: 50%; pointer-events: none; animation: fall linear forwards; z-index: 1; opacity: 0.9; box-shadow: 0 0 8px #FDE68A; }
+        [data-theme="dark"] .star { box-shadow: 0 0 10px #FDE68A; }
         @keyframes fall { to { transform: translateY(105vh); } }
     </style>
 </head>
@@ -78,7 +73,6 @@
         {{ content }}
     </div>
     <script>
-        // Đổi Giao Diện Sáng Tối
         function toggleTheme() {
             const body = document.documentElement; const btn = document.getElementById('theme-btn');
             if (body.getAttribute('data-theme') === 'dark') {
@@ -87,7 +81,6 @@
                 body.setAttribute('data-theme', 'dark'); btn.innerHTML = '☀️ Giao Diện Sáng';
             }
         }
-        // Đổi Cỡ Chữ
         let currentSize = 18;
         function changeFontSize(step) {
             currentSize += (step * 2);
@@ -95,32 +88,22 @@
             document.documentElement.style.setProperty('--base-font-size', currentSize + 'px');
         }
 
-        // Logic Hiệu ứng Sao Rơi
-        let starsEnabled = true;
-        let starInterval;
+        let starsEnabled = true; let starInterval;
         function createStar() {
             if (!starsEnabled) return;
-            const star = document.createElement('div');
-            star.className = 'star';
+            const star = document.createElement('div'); star.className = 'star';
             star.style.left = Math.random() * 100 + 'vw';
-            star.style.width = Math.random() * 3 + 2 + 'px';
-            star.style.height = star.style.width;
-            star.style.animationDuration = Math.random() * 4 + 3 + 's'; // Rơi từ 3-7 giây
-            document.body.appendChild(star);
-            setTimeout(() => star.remove(), 7000); // Xóa sao khi rơi xong
+            star.style.width = Math.random() * 3 + 2 + 'px'; star.style.height = star.style.width;
+            star.style.animationDuration = Math.random() * 4 + 3 + 's'; 
+            document.body.appendChild(star); setTimeout(() => star.remove(), 7000); 
         }
         function startStars() { starInterval = setInterval(createStar, 400); }
         function toggleStars() {
-            starsEnabled = !starsEnabled;
-            const btn = document.getElementById('star-btn');
-            if (starsEnabled) {
-                btn.innerHTML = '✨ Tắt Sao'; startStars();
-            } else {
-                btn.innerHTML = '✨ Bật Sao'; clearInterval(starInterval);
-                document.querySelectorAll('.star').forEach(s => s.remove());
-            }
+            starsEnabled = !starsEnabled; const btn = document.getElementById('star-btn');
+            if (starsEnabled) { btn.innerHTML = '✨ Tắt Sao'; startStars(); } 
+            else { btn.innerHTML = '✨ Bật Sao'; clearInterval(starInterval); document.querySelectorAll('.star').forEach(s => s.remove()); }
         }
-        startStars(); // Bật sao mặc định khi vào web
+        startStars(); 
     </script>
 </body>
 </html>
