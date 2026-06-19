@@ -52,7 +52,10 @@ title: Profile OC
 
     /* --- CSS POPUP TIMELINE --- */
     .modal {
-        display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+        display: none; 
+        position: fixed; 
+        z-index: 99999 !important; /* Tăng vọt lên tầng chín tầng mây và thêm !important */
+        left: 0; top: 0; width: 100%; height: 100%;
         background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
         opacity: 0; transition: opacity 0.3s ease;
     }
@@ -158,21 +161,19 @@ title: Profile OC
     // 3. Logic Mở/Đóng Popup và Hiển thị Timeline
     const modal = document.getElementById('timeline-modal');
     
-    // DÒNG CODE MỚI: Nhấc popup ra lớp ngoài cùng của trang web để không bị menu đè
-    document.body.appendChild(modal);
-    
     function openModal(ocName) {
+        // ĐƯA DÒNG NÀY VÀO TRONG ĐÂY: Chạy đúng lúc người dùng click chuột
+        document.body.appendChild(modal); 
+        
         document.getElementById('modal-title').innerText = "Ký ức: " + ocName;
         const timelineContainer = document.getElementById('modal-timeline-content');
-        timelineContainer.innerHTML = ''; // Xóa dữ liệu cũ
+        timelineContainer.innerHTML = ''; 
 
-        // Lọc các sự kiện có tên character khớp với OC được click
         const ocEvents = allTimelines.filter(event => event.character === ocName);
 
         if (ocEvents.length === 0) {
             timelineContainer.innerHTML = '<div class="empty-timeline">Dòng thời gian của nhân vật này vẫn còn là một ẩn số...</div>';
         } else {
-            // Đổ HTML cho từng sự kiện
             ocEvents.forEach(event => {
                 timelineContainer.innerHTML += `
                     <div class="timeline-item">
@@ -186,14 +187,6 @@ title: Profile OC
         }
         
         modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Khóa cuộn trang nền bên ngoài
-    }
-
-    function closeModal(event) {
-        // Chỉ đóng khi bấm nút X hoặc bấm ra vùng đen bên ngoài (không bấm vào bảng trắng)
-        if (!event || event.target === modal || event.target.className === 'close-btn') {
-            modal.classList.remove('show');
-            document.body.style.overflow = 'auto'; // Mở lại cuộn trang
-        }
+        document.body.style.overflow = 'hidden'; 
     }
 </script>
