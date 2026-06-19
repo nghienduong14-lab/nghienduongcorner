@@ -126,9 +126,9 @@ title: Profile OC
     {% endfor %}
 </div>
 
-<div id="timeline-modal" class="modal" onclick="closeModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation();">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
+<div id="timeline-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="close-modal-btn">&times;</span>
         <h2 class="modal-oc-name" id="modal-title">Tên Nhân Vật</h2>
         <div class="timeline" id="modal-timeline-content">
             </div>
@@ -161,10 +161,10 @@ title: Profile OC
     // 3. Logic Mở/Đóng Popup và Hiển thị Timeline
     const modal = document.getElementById('timeline-modal');
     
+    // Nhấc popup ra lớp ngoài cùng (Chỉ cần để ở ngoài này, không nhét vào trong hàm)
+    document.body.appendChild(modal);
+
     function openModal(ocName) {
-        // ĐƯA DÒNG NÀY VÀO TRONG ĐÂY: Chạy đúng lúc người dùng click chuột
-        document.body.appendChild(modal); 
-        
         document.getElementById('modal-title').innerText = "Ký ức: " + ocName;
         const timelineContainer = document.getElementById('modal-timeline-content');
         timelineContainer.innerHTML = ''; 
@@ -185,6 +185,26 @@ title: Profile OC
                 `;
             });
         }
+        
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; 
+    }
+
+    // Cơ chế ĐÓNG Popup cực kỳ chuẩn xác:
+    
+    // 1. Tắt khi bấm nút X
+    document.getElementById('close-modal-btn').addEventListener('click', function() {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    });
+
+    // 2. Tắt khi bấm ra vùng nền đen bên ngoài
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+    });
         
         modal.classList.add('show');
         document.body.style.overflow = 'hidden'; 
