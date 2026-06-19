@@ -46,14 +46,21 @@ layout: default
     .cal-day { padding: 5px 0; border-radius: 4px; position: relative; z-index: 2; }
     
     /* Vòng tròn nét tay khoanh ngày có bài */
-    .has-post { font-weight: bold; color: var(--mystification) !important; position: relative; }
+    .has-post { font-weight: bold; color: var(--mystification) !important; position: relative; z-index: 1; }
     [data-theme="dark"] .has-post { color: #fff !important; }
     .has-post::after {
-        content: ""; position: absolute; top: -2px; left: 2px; right: 2px; bottom: -2px;
+        content: ""; 
+        position: absolute; 
+        top: 50%; 
+        left: 50%;
+        width: 28px;  /* Cố định chiều rộng tạo hình tròn */
+        height: 28px; /* Cố định chiều cao tạo hình tròn */
+        transform: translate(-50%, -50%) rotate(-5deg); /* Căn ra giữa và nằm hơi nghiêng */
         border: 2px solid #E57373; /* Màu đỏ nhạt viết tay */
-        /* Tuyệt chiêu CSS bo góc lộn xộn tạo cảm giác vẽ tay */
-        border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-        transform: rotate(-2deg); pointer-events: none; z-index: -1;
+        /* Tạo độ méo ngẫu nhiên giống bút lông */
+        border-radius: 50% 45% 50% 40% / 40% 50% 45% 50%; 
+        pointer-events: none; 
+        z-index: -1;
     }
 </style>
 
@@ -102,7 +109,7 @@ layout: default
             <h3>Lượt Ghé Thăm</h3>
             <div class="view-counter">
                 <!-- Sử dụng dịch vụ đếm lượt xem miễn phí (tự động tăng mỗi khi có người vào) -->
-                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://{{ site.github.url }}&count_bg=%237087BB&title_bg=%23495589&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false" alt="Hits">
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://nghienduong14-lab.github.io&count_bg=%237087BB&title_bg=%23495589&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false" alt="Hits">
             </div>
         </div>
 
