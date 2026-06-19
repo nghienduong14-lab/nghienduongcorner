@@ -2,18 +2,13 @@
 layout: default
 ---
 <style>
-    /* Bố cục chính 2 cột */
     .layout-wrapper { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 2rem; }
     .main-column { flex: 3; min-width: 60%; }
     .sidebar { flex: 1; min-width: 280px; }
-
-    /* Ảnh bìa */
-    .cover-image { width: 100%; height: 350px; background-image: url('https://i.pinimg.com/1200x/a3/e6/4d/a3e64d0f26c2c61cf51d2be2da3b0d9e.jpg'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid var(--border-color); }
-    
+    .cover-image { width: 100%; height: 350px; background-image: url('LINK_ANH_BIA_CUA_BAN_O_DAY.jpg'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid var(--border-color); }
     .intro { text-align: center; padding: 2.5rem 0; border-bottom: 1px dashed var(--accent); margin-bottom: 2.5rem; }
     .intro h1 { font-size: 2.5rem; margin-bottom: 15px; }
     .intro p.subtitle { font-style: italic; color: var(--accent); font-size: 1.1em; margin-bottom: 20px; }
-    
     .section-title { text-align: center; margin-bottom: 2rem; font-size: 1.8rem; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
     .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.3s; }
@@ -27,50 +22,29 @@ layout: default
     .tag { display: inline-block; background: var(--first-snow); color: var(--mystification) !important; padding: 3px 10px; border-radius: 15px; border: 1px solid var(--light-steel-blue); transition: all 0.2s ease; }
     .tag:hover { background: var(--light-steel-blue); transform: translateY(-2px); }
     [data-theme="dark"] .tag { background: var(--mystification); color: var(--first-snow) !important; border: 1px solid var(--orbital); }
-    
     .card-quote { font-size: 0.95em; font-style: italic; margin: 15px 0 0 0; padding: 10px 15px 10px 25px; border-left: 3px solid var(--accent); background-color: var(--first-snow); color: var(--mystification); border-radius: 0 8px 8px 0; position: relative; line-height: 1.6; }
     [data-theme="dark"] .card-quote { background-color: var(--mystification); color: var(--first-snow); }
     .card-quote::before { content: "“"; font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent); position: absolute; left: 5px; top: -10px; opacity: 0.2; }
 
-    /* --- SIDEBAR WIDGETS --- */
+    /* SIDEBAR */
     .widget { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 2rem; border: 1px solid var(--border-color); }
     .widget h3 { font-family: 'Playfair Display', serif; margin-top: 0; color: var(--accent); border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; font-size: 1.3rem; text-align: center; }
     
-    /* Bộ đếm lượt xem (Sử dụng huy hiệu tự động của hit counter) */
-    .view-counter { display: flex; justify-content: center; padding: 10px 0; }
-    
-    /* Bảng Lịch */
     .calendar-header { text-align: center; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
     .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 5px; font-size: 0.9em; }
     .cal-day-name { font-weight: bold; color: var(--accent); font-size: 0.8em; }
     .cal-day { padding: 5px 0; border-radius: 4px; position: relative; z-index: 2; }
     
-    /* Vòng tròn nét tay khoanh ngày có bài */
+    /* Ngày có bài được nâng cấp thành link */
+    a.cal-day { text-decoration: none; color: inherit; transition: opacity 0.2s; }
+    a.cal-day:hover { opacity: 0.6; cursor: pointer; }
     .has-post { font-weight: bold; color: var(--mystification) !important; position: relative; z-index: 1; }
     [data-theme="dark"] .has-post { color: #fff !important; }
-    .has-post::after {
-        content: ""; 
-        position: absolute; 
-        top: 50%; 
-        left: 50%;
-        width: 28px;  /* Cố định chiều rộng tạo hình tròn */
-        height: 28px; /* Cố định chiều cao tạo hình tròn */
-        transform: translate(-50%, -50%) rotate(-5deg); /* Căn ra giữa và nằm hơi nghiêng */
-        border: 2px solid #E57373; /* Màu đỏ nhạt viết tay */
-        /* Tạo độ méo ngẫu nhiên giống bút lông */
-        border-radius: 50% 45% 50% 40% / 40% 50% 45% 50%; 
-        pointer-events: none; 
-        z-index: -1;
-    }
+    .has-post::after { content: ""; position: absolute; top: 50%; left: 50%; width: 28px; height: 28px; transform: translate(-50%, -50%) rotate(-5deg); border: 2px solid #E57373; border-radius: 50% 45% 50% 40% / 40% 50% 45% 50%; pointer-events: none; z-index: -1; }
 </style>
 
-<!-- Ảnh bìa lớn -->
 <div class="cover-image"></div>
-
-<!-- Bắt đầu chia 2 cột -->
 <div class="layout-wrapper">
-    
-    <!-- CỘT TRÁI: Nội dung chính -->
     <div class="main-column">
         <section class="intro">
             <h1>Chào mừng đến với Góc nhỏ của Dương!</h1>
@@ -93,84 +67,74 @@ layout: default
                         <a href="{{ '/fanfiction.html?tag=' | relative_url }}{{ tag }}" class="tag">#{{ tag }}</a>
                         {% endfor %}
                     </div>
-                    <div class="card-quote">
-                        {{ post.excerpt | strip_html | truncatewords: 25 }}
-                    </div>
+                    <div class="card-quote">{{ post.excerpt | strip_html | truncatewords: 25 }}</div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
 
-    <!-- CỘT PHẢI: Thanh Sidebar -->
     <aside class="sidebar">
-        <!-- Lượt xem -->
         <div class="widget">
-            <h3>Lượt Ghé Thăm</h3>
-            <div class="view-counter">
-                <!-- Sử dụng dịch vụ đếm lượt xem miễn phí (tự động tăng mỗi khi có người vào) -->
-                <img src="https://profile-counter.glitch.me/nghienduong14-lab/count.svg" alt="Lượt xem">
+            <h3>Lời Tình</h3>
+            <div style="text-align: center; padding: 10px 0;">
+                <span style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent); opacity: 0.3; display: block; line-height: 0.5; margin-top: 15px;">“</span>
+                <p id="random-quote" style="font-size: 0.95em; font-style: italic; color: var(--text-color); line-height: 1.6; margin: 0 10px; min-height: 80px; display: flex; align-items: center; justify-content: center;">
+                    Đang tìm một lời yêu...
+                </p>
+                <span style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--accent); opacity: 0.3; display: block; line-height: 0.5; margin-bottom: -15px;">”</span>
             </div>
         </div>
 
-        <!-- Lịch Đăng Truyện -->
         <div class="widget">
             <h3>Lịch Tháng Này</h3>
             <div id="calendar-wrapper"></div>
         </div>
     </aside>
-
 </div>
 
 <script>
-    // Lấy danh sách các ngày có bài đăng từ Jekyll truyền vào JavaScript
+    /* DANH SÁCH RANDOM QUOTE CỦA BẠN */
+    const listQuotes = [
+        "Your soul is my favorite in this entire world.",
+        "For you, a thousand times over.",
+        "It stops here, with me and you. It ends with us.",
+        "I don't like anything more than I like you. You're my favorite.",
+        "But mostly I hate the way I don't hate you. Not even close, not even a bit, not even at all."
+    ];
+    // Hàm chọn 1 câu ngẫu nhiên
+    document.getElementById('random-quote').innerText = listQuotes[Math.floor(Math.random() * listQuotes.length)];
+
+
+    /* LỊCH VÀ LINK NGÀY */
     const postDates = [
         {% for post in site.posts %}
         "{{ post.date | date: '%Y-%m-%d' }}"{% if forloop.last == false %},{% endif %}
         {% endfor %}
     ];
 
-    // Vẽ Lịch
     function renderCalendar() {
         const wrapper = document.getElementById('calendar-wrapper');
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = now.getMonth(); 
-
-        // Lấy thứ của ngày mùng 1 (0: CN, 1: T2...) và tổng số ngày trong tháng
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-        // Tiêu đề tháng
+        const now = new Date(); const year = now.getFullYear(); const month = now.getMonth(); 
+        const firstDay = new Date(year, month, 1).getDay(); const daysInMonth = new Date(year, month + 1, 0).getDate();
         const monthNames = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
-        let html = `<div class="calendar-header">${monthNames[month]} ${year}</div>`;
-        html += `<div class="calendar-grid">`;
-        
-        // Tên các ngày trong tuần
+        let html = `<div class="calendar-header">${monthNames[month]} ${year}</div><div class="calendar-grid">`;
         const dayNames = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
         dayNames.forEach(d => { html += `<div class="cal-day-name">${d}</div>`; });
+        for (let i = 0; i < firstDay; i++) { html += `<div></div>`; }
 
-        // Tạo khoảng trống cho những ngày đầu tháng
-        for (let i = 0; i < firstDay; i++) {
-            html += `<div></div>`;
-        }
-
-        // In các ngày
         for (let d = 1; d <= daysInMonth; d++) {
-            // Ép format ngày về dạng YYYY-MM-DD để so sánh
-            const mStr = (month + 1).toString().padStart(2, '0');
-            const dStr = d.toString().padStart(2, '0');
+            const mStr = (month + 1).toString().padStart(2, '0'); const dStr = d.toString().padStart(2, '0');
             const currentDateStr = `${year}-${mStr}-${dStr}`;
             
-            // Kiểm tra xem ngày này có trong danh sách bài đăng không
-            let extraClass = postDates.includes(currentDateStr) ? 'has-post' : '';
-            html += `<div class="cal-day ${extraClass}">${d}</div>`;
+            // Nếu có bài đăng -> Biến ô vuông thành đường link
+            if(postDates.includes(currentDateStr)) {
+                html += `<a href="{{ '/fanfiction.html' | relative_url }}?date=${currentDateStr}" class="cal-day has-post">${d}</a>`;
+            } else {
+                html += `<div class="cal-day">${d}</div>`;
+            }
         }
-
-        html += `</div>`;
-        wrapper.innerHTML = html;
+        html += `</div>`; wrapper.innerHTML = html;
     }
-
-    // Chạy khi trang web tải xong
     document.addEventListener("DOMContentLoaded", renderCalendar);
 </script>
