@@ -2,7 +2,7 @@
 layout: post
 title: "[Nguyên Hạ] Vị nụ hôn đầu"
 category: "One-shot"
-tags: [OCTP]
+tags: ["OCTP", "Thanh Xuân Vườn Trường", "Nguyên Hạ"]
 image: "https://i.pinimg.com/1200x/f9/57/c2/f957c23566df960a4e1d0c847672b554.jpg"
 ---
 Đương nhiên việc không thể thiếu vào đêm giao thừa chính là đi Countdown.
