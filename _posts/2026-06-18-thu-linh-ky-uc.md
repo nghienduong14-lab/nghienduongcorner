@@ -2,7 +2,7 @@
 layout: post
 title: "[Thư Linh] Ký ức"
 category: "One-shot"
-tags: [Nguyệt Mộng]
+tags: ["Nguyệt Mộng", "Thư Linh", "Mạch chính"]
 image: "https://i.pinimg.com/1200x/a2/1b/6b/a21b6b73f8da8763a98ceda89c21139f.jpg"
 ---
 
