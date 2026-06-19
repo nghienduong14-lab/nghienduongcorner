@@ -16,19 +16,18 @@ title: Profile OC
 
     .oc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; align-items: stretch; }
     
-    /* Biến thẻ OC thành nút bấm */
     .oc-card {
         background: var(--card-bg); border-radius: 12px; overflow: hidden;
         box-shadow: 0 6px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column;
         border: 1px solid var(--border-color); transition: transform 0.3s, box-shadow 0.3s; height: 100%;
-        cursor: pointer; /* Hiển thị biểu tượng bàn tay khi di chuột vào */
+        cursor: pointer;
     }
     .oc-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.15); border-color: var(--accent); }
     
     .oc-img-wrapper { width: 100%; aspect-ratio: 4 / 3; border-bottom: 3px solid var(--light-steel-blue); overflow: hidden; }
     [data-theme="dark"] .oc-img-wrapper { border-bottom: 3px solid var(--orbital); opacity: 0.85; }
     .oc-img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.5s;}
-    .oc-card:hover .oc-img { transform: scale(1.05); } /* Ảnh phóng to nhẹ khi lướt qua */
+    .oc-card:hover .oc-img { transform: scale(1.05); }
     
     .oc-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; font-size: 0.9em; }
     .oc-name-container { height: 80px; display: flex; align-items: center; justify-content: center; border-bottom: 1px dashed var(--border-color); margin-bottom: 15px; }
@@ -40,7 +39,7 @@ title: Profile OC
     .oc-label { font-weight: bold; color: var(--accent); min-width: 80px; }
     .oc-value { text-align: right; color: var(--text-color); font-style: italic; }
 
-    /* CSS Tooltip Tơ Duyên */
+    /* Tooltip Tơ Duyên */
     .relation-tooltip { position: relative; border-bottom: 1px dashed var(--accent); padding-bottom: 2px; }
     .relation-tooltip .tooltiptext {
         visibility: hidden; width: 220px; background-color: var(--astronaut); color: #ffffff; text-align: center; border-radius: 8px; padding: 10px; position: absolute; z-index: 99; bottom: 140%; left: 50%; transform: translateX(-50%) translateY(5px); opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; font-size: 0.85rem; font-style: italic; font-family: 'Lora', serif; font-weight: normal; box-shadow: 0 6px 15px rgba(0,0,0,0.15); line-height: 1.5; pointer-events: none;
@@ -50,12 +49,9 @@ title: Profile OC
     [data-theme="dark"] .relation-tooltip .tooltiptext { background-color: var(--first-snow); color: var(--mystification); }
     [data-theme="dark"] .relation-tooltip .tooltiptext::after { border-color: var(--first-snow) transparent transparent transparent; }
 
-    /* --- CSS POPUP TIMELINE --- */
+    /* Popup Timeline */
     .modal {
-        display: none; 
-        position: fixed; 
-        z-index: 99999 !important; /* Tăng vọt lên tầng chín tầng mây và thêm !important */
-        left: 0; top: 0; width: 100%; height: 100%;
+        display: none; position: fixed; z-index: 99999 !important; left: 0; top: 0; width: 100%; height: 100%;
         background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
         opacity: 0; transition: opacity 0.3s ease;
     }
@@ -74,7 +70,7 @@ title: Profile OC
     
     .modal-oc-name { font-family: 'Playfair Display', serif; text-align: center; color: var(--text-color); font-size: 2rem; margin-top: 0; border-bottom: 1px dashed var(--accent); padding-bottom: 15px; }
 
-    /* CSS Đường Thời Gian bên trong Popup */
+    /* Đường Thời Gian bên trong Popup */
     .timeline { position: relative; padding: 20px 0; margin-left: 20px; }
     .timeline::after { content: ''; position: absolute; width: 2px; background-color: var(--accent); top: 0; bottom: 0; left: 15px; }
     .timeline-item { position: relative; padding-left: 45px; margin-bottom: 25px; }
@@ -113,7 +109,8 @@ title: Profile OC
                 <div class="oc-detail">
                     <span class="oc-label">Partner:</span> 
                     {% if oc.relationship_details %}
-                    <span class="oc-value relation-tooltip" onclick="event.stopPropagation();"> {{ oc.partner }}<span class="tooltiptext">{{ oc.relationship_details }}</span>
+                    <span class="oc-value relation-tooltip" onclick="event.stopPropagation();">
+                        {{ oc.partner }}<span class="tooltiptext">{{ oc.relationship_details }}</span>
                     </span>
                     {% else %}
                     <span class="oc-value">{{ oc.partner }}</span>
@@ -126,29 +123,31 @@ title: Profile OC
     {% endfor %}
 </div>
 
+<!-- KHUNG CỬA SỔ BẬT LÊN (MODAL) -->
 <div id="timeline-modal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" onclick="event.stopPropagation();">
         <span class="close-btn" id="close-modal-btn">&times;</span>
         <h2 class="modal-oc-name" id="modal-title">Tên Nhân Vật</h2>
         <div class="timeline" id="modal-timeline-content">
-            </div>
+            <!-- Nội dung timeline sẽ được JS đổ vào đây -->
+        </div>
     </div>
 </div>
 
 <script>
-    // 1. Lấy toàn bộ dữ liệu Timeline từ Jekyll chuyển vào Mảng JavaScript
+    // 1. Dữ liệu Timeline từ Jekyll
     const allTimelines = [
         {% for event in site.data.timeline %}
         {
-            year: "{{ event.year }}",
-            character: "{{ event.character }}",
-            title: "{{ event.title }}",
+            year: "{{ event.year | escape }}",
+            character: "{{ event.character | escape }}",
+            title: "{{ event.title | escape }}",
             desc: "{{ event.description | escape }}"
         }{% if forloop.last == false %},{% endif %}
         {% endfor %}
     ];
 
-    // 2. Logic Lọc thẻ OC
+    // 2. Logic Lọc OC
     function filterOC() {
         const selectedAU = document.getElementById('au-filter').value;
         const cards = document.querySelectorAll('.oc-card');
@@ -158,10 +157,10 @@ title: Profile OC
         });
     }
 
-    // 3. Logic Mở/Đóng Popup và Hiển thị Timeline
+    // 3. Logic Mở Popup và Hiển thị Timeline
     const modal = document.getElementById('timeline-modal');
     
-    // Nhấc popup ra lớp ngoài cùng (Chỉ cần để ở ngoài này, không nhét vào trong hàm)
+    // Đưa modal ra lớp ngoài cùng của trang web
     document.body.appendChild(modal);
 
     function openModal(ocName) {
@@ -190,23 +189,19 @@ title: Profile OC
         document.body.style.overflow = 'hidden'; 
     }
 
-    // Cơ chế ĐÓNG Popup cực kỳ chuẩn xác:
-    
-    // 1. Tắt khi bấm nút X
-    document.getElementById('close-modal-btn').addEventListener('click', function() {
-        modal.classList.remove('show');
-        document.body.style.overflow = 'auto';
-    });
+    // 4. Cơ chế ĐÓNG Popup
+    const closeBtn = document.getElementById('close-modal-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+    }
 
-    // 2. Tắt khi bấm ra vùng nền đen bên ngoài
     window.addEventListener('click', function(event) {
         if (event.target === modal) {
             modal.classList.remove('show');
             document.body.style.overflow = 'auto';
         }
     });
-        
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; 
-    }
 </script>
