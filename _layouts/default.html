@@ -26,17 +26,22 @@
         h1, h2, h3, h4, .logo { font-family: 'Playfair Display', serif; font-weight: 700; }
         a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
         a:hover { opacity: 0.7; }
-        nav { background: var(--nav-bg); padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 10; }
+        
+        /* CẬP NHẬT Z-INDEX LÊN 999 ĐỂ THANH MENU LUÔN NẰM TRÊN CÙNG */
+        nav { background: var(--nav-bg); padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 999; }
         .logo { font-size: 1.8rem; color: var(--text-color); }
         
         .nav-links { display: flex; align-items: center; }
         .nav-links > a, .dropbtn { color: var(--text-color); margin-left: 25px; font-family: 'Playfair Display', serif; font-size: 1.1rem; background: none; border: none; cursor: pointer; padding: 0; }
         .dropdown { position: relative; display: inline-block; }
-        .dropdown-content { display: none; position: absolute; background-color: var(--card-bg); min-width: 180px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 10; border-radius: 8px; overflow: hidden; top: 100%; left: 25px; }
+        
+        /* CẬP NHẬT Z-INDEX MENU RỚT XUỐNG LÊN MỨC CAO NHẤT (1000) */
+        .dropdown-content { display: none; position: absolute; background-color: var(--card-bg); min-width: 180px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1000; border-radius: 8px; overflow: hidden; top: 100%; left: 25px; }
         .dropdown-content a { color: var(--text-color); padding: 12px 16px; text-decoration: none; display: block; font-family: 'Lora', serif; font-size: 1rem; margin-left: 0; }
         .dropdown-content a:hover { background-color: var(--bg-color); }
         .dropdown:hover .dropdown-content { display: block; }
 
+        /* GIỮ Z-INDEX THANH CÔNG CỤ Ở MỨC 10 ĐỂ BỊ MENU ĐÈ LÊN KHI SỔ XUỐNG */
         .toolbar { display: flex; justify-content: flex-end; padding: 10px 10%; gap: 15px; border-bottom: 1px solid var(--border-color); position: relative; z-index: 10;}
         .toolbar button { background: transparent; border: 1px solid var(--text-color); color: var(--text-color); padding: 5px 15px; border-radius: 20px; cursor: pointer; font-family: 'Lora', serif; transition: all 0.3s; }
         .toolbar button:hover { background: var(--text-color); color: var(--bg-color); }
@@ -54,9 +59,9 @@
             display: none !important; 
         }
         body.zen-mode .container {
-            max-width: 750px !important; /* Thu hẹp khung đọc như một trang sách */
+            max-width: 750px !important;
             margin: 0 auto;
-            font-size: calc(var(--base-font-size) + 2px); /* Tự động phóng to nhẹ chữ */
+            font-size: calc(var(--base-font-size) + 2px);
             padding-top: 5vh;
         }
         body.zen-mode .main-column { 
@@ -64,7 +69,6 @@
             flex: none !important; 
         }
         
-        /* Giấu các nút khác trên thanh công cụ, chỉ giữ lại nút Thoát Tĩnh Lặng ở góc dưới */
         body.zen-mode .toolbar button:not(#zen-btn) { display: none !important; }
         body.zen-mode .toolbar { 
             position: fixed; bottom: 30px; right: 30px; 
@@ -86,6 +90,7 @@
         <div class="nav-links">
             <a href="{{ '/' | relative_url }}">Trang Chủ</a>
             <a href="{{ '/profile-oc.html' | relative_url }}">Profile OC</a>
+            <a href="{{ '/timeline.html' | relative_url }}">Lore & Timeline</a>
             <div class="dropdown">
                 <a href="{{ '/fanfiction.html' | relative_url }}" class="dropbtn">Fanfiction ▼</a>
                 <div class="dropdown-content">
@@ -97,7 +102,6 @@
         </div>
     </nav>
     <div class="toolbar">
-        <!-- NÚT KÍCH HOẠT FOCUS MODE MỚI -->
         <button onclick="toggleZen()" id="zen-btn">📖 Đọc Tĩnh Lặng</button>
         <button onclick="toggleStars()" id="star-btn">✨ Tắt Sao</button>
         <button onclick="changeFontSize(-1)">A- Thu nhỏ</button>
@@ -140,14 +144,12 @@
         }
         startStars(); 
 
-        // TÍNH NĂNG FOCUS MODE ĐƯỢC THÊM VÀO ĐÂY
         function toggleZen() {
             const body = document.body;
             const btn = document.getElementById('zen-btn');
             body.classList.toggle('zen-mode');
             
             if (body.classList.contains('zen-mode')) {
-                // Khi ở chế độ tĩnh lặng, nút sẽ đổi thành biểu tượng nến và tự động mờ đi
                 btn.innerHTML = '🕯️ Thoát Tĩnh Lặng';
             } else {
                 btn.innerHTML = '📖 Đọc Tĩnh Lặng';
