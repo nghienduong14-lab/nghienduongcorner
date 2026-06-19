@@ -6,6 +6,10 @@ tags: ["Hogwarts", "Thanh Mai Trúc Mã", "LouGi", "Kỳ nghỉ hè của Gisell
 image: "https://i.pinimg.com/736x/9c/a4/50/9ca450f3c4c14d28fffd0ea9cb2ff633.jpg"
 excerpt: "His presence soothes her more than a full-moon run."
 ---
+*Phần 1 trong serise Kỳ nghỉ hè của Giselle Windor.*
+
+***
+
 “Tớ không thích những người đến từ Wales.”
 
 Giselle năm 12 tuổi đã nói với Louis như vậy, và sau đó con bé chỉ đứng yên trong cái nắng của hoàng hôn và dời ánh nhìn khỏi khuôn mặt của người đứng đối diện mình không xa đang hơi sững sờ.
