@@ -158,6 +158,9 @@ title: Profile OC
     // 3. Logic Mở/Đóng Popup và Hiển thị Timeline
     const modal = document.getElementById('timeline-modal');
     
+    // DÒNG CODE MỚI: Nhấc popup ra lớp ngoài cùng của trang web để không bị menu đè
+    document.body.appendChild(modal);
+    
     function openModal(ocName) {
         document.getElementById('modal-title').innerText = "Ký ức: " + ocName;
         const timelineContainer = document.getElementById('modal-timeline-content');
