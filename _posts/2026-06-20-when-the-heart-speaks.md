@@ -9,6 +9,10 @@ excerpt: |
 
     “Không sao, dù cậu có ở đâu, mình sẽ luôn tìm được cậu.”
 ---
+*Phần 4 trong series Kỳ nghỉ hè của Giselle Windsor.*
+
+***
+
 Vào ngày thứ tư ở nhà Ross, bố mẹ của Louis quyết định đưa cả đại gia đình (và đương nhiên là cả khách quý Giselle) tới chơi ở vùng ngoại ô Colwyn Bay. Giselle có nghe Louis kể lại rằng họ đã mua một căn biệt thự ở gần đây khá lâu về trước, và chỉ dùng nó trong những dịp đặc biệt như tụ tập gia đình và chào đón những người bạn từ phương xa đến.
 
 “Bình thường cậu hay làm gì ở đó?”
